@@ -1,21 +1,24 @@
-import React, { useState, useMemo, useEffect } from 'react';
-import { useDispatch, useSelector } from 'react-redux';
+import React, { useEffect, useState } from 'react';
+
 import { Link } from 'react-router-dom';
 import { MdAdd } from 'react-icons/md';
 import { Container, ContainerHeader, ContainerList } from './styles';
+import api from '../../../services/api';
 
 import { listStudentsRequest } from '../../../store/modules/students/actions';
 
 export default function Listagem() {
-  const dispatch = useDispatch();
-  function loadList() {
-    dispatch(listStudentsRequest());
-  }
+  const [students, setStudents] = useState([]);
+
   useEffect(() => {
+    async function loadList() {
+      const response = await api.get('students');
+      setStudents(response.data);
+    }
+
     loadList();
-  }, [loadList]);
-  const students = useSelector(state => state.students);
-  console.tron.log(students);
+  }, []);
+
   return (
     <Container>
       <ContainerHeader>
@@ -31,27 +34,35 @@ export default function Listagem() {
         </div>
       </ContainerHeader>
       <ContainerList>
-        <table>
-          <thead>
-            <tr>
-              <th>NOME</th>
-              <th>E-MAIL</th>
-              <th>IDADE</th>
-            </tr>
-          </thead>
-          <tbody>
-            <tr>
-              <td>Alex</td>
-              <td>Abauruel@gmail.com</td>
-              <td>34</td>
-            </tr>
-            <tr>
-              <td>Alex</td>
-              <td>Abauruel@gmail.com</td>
-              <td>34</td>
-            </tr>
-          </tbody>
-        </table>
+        {!students ? (
+          <h1>No students</h1>
+        ) : (
+          <table>
+            <thead>
+              <tr>
+                <th>NOME</th>
+                <th>E-MAIL</th>
+                <th>IDADE</th>
+              </tr>
+            </thead>
+            <tbody>
+              {students.map(student => (
+                <tr key={student.id}>
+                  <td>{student.name}</td>
+                  <td>{student.email}</td>
+                  <td>{student.age}</td>
+                  <td>
+                    <button type="button">editar</button>
+                  </td>
+
+                  <td>
+                    <button type="button">apagar</button>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        )}
       </ContainerList>
     </Container>
   );
