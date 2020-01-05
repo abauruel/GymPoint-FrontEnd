@@ -6,12 +6,14 @@ import Route from './route';
 import SigIn from '../pages/SignIn';
 
 import Dashboard from '../pages/Alunos/Listagem';
+import EditarAluno from '../pages/Alunos/Edicao';
 
 export default function Routes() {
   return (
     <Switch>
       <Route path="/" exact component={SigIn} />
       <Route path="/dashboard" component={Dashboard} isPrivate />
+      <Route path="/editarAluno" component={EditarAluno} isPrivate />
     </Switch>
   );
 }
