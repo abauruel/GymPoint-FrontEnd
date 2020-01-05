@@ -1,5 +1,6 @@
 import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
+import { Link } from 'react-router-dom';
 import logoHeader from '../../assets/logoheader.png';
 import { Container } from './styles';
 import { signOut } from '../../store/modules/auth/actions';
@@ -16,7 +17,9 @@ export default function Header() {
         <ul>
           <img src={logoHeader} alt="" />
           <li>GYMPOINT</li>
-          <li>ALUNOS</li>
+          <li>
+            <Link to="/dashboard">ALUNOS</Link>
+          </li>
           <li>PLANOS</li>
           <li>MATRICULAS</li>
           <li>PEDIDOS DE AUXÍLIO</li>

@@ -14,6 +14,10 @@ export const Container = styled.div`
         padding-left: 40px;
       }
       li {
+        > a {
+          text-decoration: none;
+          color: inherit;
+        }
         padding: 8px 0;
         display: inline;
         margin: 20px;
