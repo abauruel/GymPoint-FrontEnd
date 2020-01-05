@@ -56,11 +56,22 @@ export const ContainerList = styled.div`
     width: 100%;
     font-family: Roboto, sans-serif;
     font-size: 16px;
-  }
-  th,
-  td {
-    border-bottom: 1px solid #eee;
-    text-align: left;
-    padding: 10px;
+
+    th,
+    td {
+      border-bottom: 1px solid #eee;
+      text-align: left;
+      padding: 10px;
+      :last-child {
+        button {
+          color: #de3b3b;
+        }
+      }
+      > button {
+        border: none;
+        font-size: 15px;
+        color: #4d85ee;
+      }
+    }
   }
 `;
