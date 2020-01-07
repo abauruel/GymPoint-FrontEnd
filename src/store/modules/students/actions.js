@@ -22,6 +22,12 @@ export function StudentUpdatedSuccess() {
   };
 }
 
+export function studentDelete(id) {
+  return {
+    type: '@student/DELETE',
+    payload: { id },
+  };
+}
 export function ShowStudent(student) {
   return {
     type: '@student/SHOW',

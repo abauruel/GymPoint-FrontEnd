@@ -6,7 +6,10 @@ import { useDispatch } from 'react-redux';
 import { Container, ContainerHeader, ContainerList } from './styles';
 import api from '../../../services/api';
 
-import { StudentUpdateRequest } from '../../../store/modules/students/actions';
+import {
+  StudentUpdateRequest,
+  studentDelete,
+} from '../../../store/modules/students/actions';
 
 export default function Listagem() {
   const [students, setStudents] = useState([]);
@@ -22,7 +25,11 @@ export default function Listagem() {
   function handleUpdate(id) {
     dispatch(StudentUpdateRequest(id));
   }
-  function handleDelete(id) {}
+  function handleDelete(id) {
+    if (window.confirm('deseja realmente deletar?')) {
+      dispatch(studentDelete(id));
+    }
+  }
 
   return (
     <Container>
@@ -31,7 +38,7 @@ export default function Listagem() {
           <p>Gerenciar Alunos</p>
         </div>
         <div>
-          <Link to="/cadastro">
+          <Link to="/cadastroAluno">
             <MdAdd size={12} color="#FFF" />
             <label>Cadastrar</label>
           </Link>

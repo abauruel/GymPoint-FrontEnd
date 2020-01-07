@@ -19,14 +19,26 @@ export function* studentUpdate({ payload }) {
 export function* studentUpdated({ payload }) {
   try {
     yield call(api.put, `student/${payload.id}`, payload.student);
-    // yield put(StudentUpdatedSuccess());
+    yield put(StudentUpdatedSuccess());
     history.push('/dashboard');
   } catch (error) {
     console.tron.log(error);
   }
 }
 
+export function* studentDelete({ payload }) {
+  try {
+    yield call(api.delete, `student/${payload.id}`);
+    yield put(StudentUpdatedSuccess());
+    history.push('/dashboard');
+  } catch (error) {
+    toast.error('Nao foi possivel excluir registro');
+    yield put(StudentFailure());
+  }
+}
+
 export default all([
   takeLatest('@student/UPDATE_REQUEST', studentUpdate),
   takeLatest('@student/UPDATED_REQUEST', studentUpdated),
+  takeLatest('@student/DELETE', studentDelete),
 ]);
