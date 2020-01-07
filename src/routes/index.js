@@ -7,6 +7,7 @@ import SigIn from '../pages/SignIn';
 
 import Dashboard from '../pages/Alunos/Listagem';
 import EditarAluno from '../pages/Alunos/Edicao';
+import CadastrarAluno from '../pages/Alunos/Cadastro';
 
 export default function Routes() {
   return (
@@ -14,6 +15,7 @@ export default function Routes() {
       <Route path="/" exact component={SigIn} />
       <Route path="/dashboard" component={Dashboard} isPrivate />
       <Route path="/editarAluno" component={EditarAluno} isPrivate />
+      <Route path="/cadastroAluno" component={CadastrarAluno} isPrivate />
     </Switch>
   );
 }
