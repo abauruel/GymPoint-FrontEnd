@@ -15,41 +15,39 @@ export const Content = styled.div`
   background: #fff;
   padding: 10px;
 
-  form {
-    padding: 30px;
-    p {
-      font-weight: bold;
-      margin-top: 10px;
-      font-size: 14px;
-    }
+  padding: 30px;
+  p {
+    font-weight: bold;
+    margin-top: 10px;
+    font-size: 14px;
+  }
+  > div {
+    display: flex;
     > div {
-      display: flex;
-      > div {
-        :first-child {
-          margin: 10px 0;
-        }
-        margin: 10px;
-        width: 30%;
+      :first-child {
+        margin: 10px 0;
       }
+      margin: 10px;
+      width: 30%;
     }
-    input {
-      padding: 10px;
-      border-radius: 4px;
-      border: 1px solid #eee;
-      font-size: 16px;
-      width: 93%;
-    }
+  }
+  input {
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #eee;
+    font-size: 16px;
+    width: 93%;
   }
 `;
 export const ContainerHeader = styled.div`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  p {
+  > p {
     font-size: 24px;
     font-weight: bold;
   }
-  div {
+  > div {
     > button {
       border: none;
       border-radius: 4px;

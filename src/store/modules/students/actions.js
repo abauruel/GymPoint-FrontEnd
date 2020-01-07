@@ -1,18 +1,30 @@
-export function listStudentsRequest() {
-  return {
-    type: '@students/LIST_REQUEST',
-  };
-}
-
-export function listStudentsSuccess(students) {
-  return {
-    type: '@student/LIST_SUCCESS',
-    payload: { students },
-  };
-}
-
 export function StudentFailure() {
   return {
     type: '@student/FAILURE',
+  };
+}
+
+export function StudentUpdateRequest(id) {
+  return {
+    type: '@student/UPDATE_REQUEST',
+    payload: { id },
+  };
+}
+export function StudentUpdatedRequest(id, student) {
+  return {
+    type: '@student/UPDATED_REQUEST',
+    payload: { id, student },
+  };
+}
+export function StudentUpdatedSuccess() {
+  return {
+    type: '@student/UPDATED_SUCCESS',
+  };
+}
+
+export function ShowStudent(student) {
+  return {
+    type: '@student/SHOW',
+    payload: { student },
   };
 }

@@ -3,6 +3,7 @@ import produce from 'immer';
 const INITIAL_STATE = {
   profile: null,
   students: [],
+  student: null,
 };
 export default function student(state = INITIAL_STATE, action) {
   switch (action.type) {
@@ -14,9 +15,13 @@ export default function student(state = INITIAL_STATE, action) {
       return produce(state, draft => {
         draft.profile = null;
       });
-    case '@student/LIST_SUCCESS':
+    case '@student/SHOW':
       return produce(state, draft => {
-        draft.students = action.payload.students;
+        draft.student = action.payload.student;
+      });
+    case '@student/UPDATED_SUCCESS':
+      return produce(state, draft => {
+        draft.student = null;
       });
     default:
       return state;

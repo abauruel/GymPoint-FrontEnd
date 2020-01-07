@@ -2,14 +2,15 @@ import React, { useEffect, useState } from 'react';
 
 import { Link } from 'react-router-dom';
 import { MdAdd } from 'react-icons/md';
+import { useDispatch } from 'react-redux';
 import { Container, ContainerHeader, ContainerList } from './styles';
 import api from '../../../services/api';
 
-import { listStudentsRequest } from '../../../store/modules/students/actions';
+import { StudentUpdateRequest } from '../../../store/modules/students/actions';
 
 export default function Listagem() {
   const [students, setStudents] = useState([]);
-
+  const dispatch = useDispatch();
   useEffect(() => {
     async function loadList() {
       const response = await api.get('students');
@@ -18,6 +19,10 @@ export default function Listagem() {
 
     loadList();
   }, []);
+  function handleUpdate(id) {
+    dispatch(StudentUpdateRequest(id));
+  }
+  function handleDelete(id) {}
 
   return (
     <Container>
@@ -52,11 +57,21 @@ export default function Listagem() {
                   <td>{student.email}</td>
                   <td>{student.age}</td>
                   <td>
-                    <button type="button">editar</button>
+                    <button
+                      type="button"
+                      onClick={() => handleUpdate(student.id)}
+                    >
+                      editar
+                    </button>
                   </td>
 
                   <td>
-                    <button type="button">apagar</button>
+                    <button
+                      type="button"
+                      onClick={() => handleDelete(student.id)}
+                    >
+                      apagar
+                    </button>
                   </td>
                 </tr>
               ))}
