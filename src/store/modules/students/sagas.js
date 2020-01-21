@@ -1,3 +1,4 @@
+// eslint-disable-next-line object-curly-newline
 import { takeLatest, call, put, all } from 'redux-saga/effects';
 
 import { toast } from 'react-toastify';
@@ -37,8 +38,25 @@ export function* studentDelete({ payload }) {
   }
 }
 
+export function* studentStore({ payload }) {
+  try {
+    const { data } = payload;
+
+    yield call(api.post, 'student', {
+      ...data,
+      weight: Number(data.weight),
+      height: Number(data.height),
+    });
+    history.push('/dashboard');
+  } catch (err) {
+    toast.error('Falha ao salvar dados');
+    yield put(StudentFailure());
+  }
+}
+
 export default all([
   takeLatest('@student/UPDATE_REQUEST', studentUpdate),
   takeLatest('@student/UPDATED_REQUEST', studentUpdated),
   takeLatest('@student/DELETE', studentDelete),
+  takeLatest('@student/ADD_REQUEST', studentStore),
 ]);
