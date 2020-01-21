@@ -1,12 +1,19 @@
 import React from 'react';
 
 import { Form, Input } from '@rocketseat/unform';
+import { useDispatch } from 'react-redux';
 import { Container, ContainerHeader, Content } from './styles';
+import { studentAddRequest } from '../../../store/modules/students/actions';
 
 export default function Cadastro() {
+  const dispatch = useDispatch();
+
+  function handleAddStudent(data) {
+    dispatch(studentAddRequest(data));
+  }
   return (
     <Container>
-      <Form>
+      <Form onSubmit={handleAddStudent}>
         <ContainerHeader>
           <p>Cadastro de Aluno</p>
           <div>
