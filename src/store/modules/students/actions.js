@@ -34,3 +34,10 @@ export function ShowStudent(student) {
     payload: { student },
   };
 }
+
+export function studentAddRequest(data) {
+  return {
+    type: '@student/ADD_REQUEST',
+    payload: { data },
+  };
+}
