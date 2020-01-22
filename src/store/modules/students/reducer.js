@@ -19,9 +19,9 @@ export default function student(state = INITIAL_STATE, action) {
       return produce(state, draft => {
         draft.student = action.payload.student;
       });
-    case '@student/UPDATED_SUCCESS':
+    case '@student/UPDATE_SUCCESS':
       return produce(state, draft => {
-        draft.student = null;
+        draft.students = null;
       });
     default:
       return state;

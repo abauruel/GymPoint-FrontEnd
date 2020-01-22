@@ -1,10 +1,10 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { Form, Input } from '@rocketseat/unform';
 import { Container, ContainerHeader, Content } from './styles';
 import history from '../../../services/history';
 
-import { StudentUpdatedRequest } from '../../../store/modules/students/actions';
+import { StudentUpdateData } from '../../../store/modules/students/actions';
 
 export default function Edicao() {
   const dispatch = useDispatch();
@@ -13,8 +13,8 @@ export default function Edicao() {
   function handleBack() {
     history.push('/');
   }
-  function handleSave(student) {
-    dispatch(StudentUpdatedRequest(id, student));
+  function handleSave(aluno) {
+    dispatch(StudentUpdateData(id, aluno));
   }
   return (
     <Container>

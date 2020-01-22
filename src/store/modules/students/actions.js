@@ -10,15 +10,16 @@ export function StudentUpdateRequest(id) {
     payload: { id },
   };
 }
-export function StudentUpdatedRequest(id, student) {
+
+export function StudentUpdateData(id, student) {
   return {
-    type: '@student/UPDATED_REQUEST',
+    type: '@student/UPDATE_DATA',
     payload: { id, student },
   };
 }
-export function StudentUpdatedSuccess() {
+export function StudentUpdateSuccess() {
   return {
-    type: '@student/UPDATED_SUCCESS',
+    type: '@student/UPDATE_SUCCESS',
   };
 }
 

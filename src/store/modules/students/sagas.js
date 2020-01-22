@@ -4,11 +4,12 @@ import { takeLatest, call, put, all } from 'redux-saga/effects';
 import { toast } from 'react-toastify';
 import api from '../../../services/api';
 import history from '../../../services/history';
-import { StudentFailure, ShowStudent, StudentUpdatedSuccess } from './actions';
+import { StudentFailure, ShowStudent, StudentUpdateSuccess } from './actions';
 
-export function* studentUpdate({ payload }) {
+export function* studentRequestUpdate({ payload }) {
+  const { id } = payload;
   try {
-    const response = yield call(api.get, `student/${payload.id}`);
+    const response = yield call(api.get, `student/${id}`);
     yield put(ShowStudent(response.data));
     history.push('/editarAluno');
   } catch (error) {
@@ -18,9 +19,15 @@ export function* studentUpdate({ payload }) {
 }
 
 export function* studentUpdated({ payload }) {
+  const { student, id } = payload;
+
   try {
-    yield call(api.put, `student/${payload.id}`, payload.student);
-    yield put(StudentUpdatedSuccess());
+    yield call(api.put, `student/${id}`, {
+      ...student,
+      height: Number(student.height),
+      weight: Number(student.weight),
+    });
+    yield put(StudentUpdateSuccess());
     history.push('/dashboard');
   } catch (error) {
     console.tron.log(error);
@@ -30,7 +37,7 @@ export function* studentUpdated({ payload }) {
 export function* studentDelete({ payload }) {
   try {
     yield call(api.delete, `student/${payload.id}`);
-    yield put(StudentUpdatedSuccess());
+    yield put(StudentUpdateSuccess());
     history.push('/dashboard');
   } catch (error) {
     toast.error('Nao foi possivel excluir registro');
@@ -55,8 +62,8 @@ export function* studentStore({ payload }) {
 }
 
 export default all([
-  takeLatest('@student/UPDATE_REQUEST', studentUpdate),
-  takeLatest('@student/UPDATED_REQUEST', studentUpdated),
+  takeLatest('@student/UPDATE_REQUEST', studentRequestUpdate),
+  takeLatest('@student/UPDATE_DATA', studentUpdated),
   takeLatest('@student/DELETE', studentDelete),
   takeLatest('@student/ADD_REQUEST', studentStore),
 ]);
