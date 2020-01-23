@@ -21,7 +21,8 @@ export default function Listagem() {
     }
 
     loadList();
-  }, []);
+  }, [students]);
+
   function handleUpdate(id) {
     dispatch(StudentUpdateRequest(id));
   }
