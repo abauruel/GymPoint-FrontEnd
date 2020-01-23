@@ -20,7 +20,9 @@ export default function Header() {
           <li>
             <Link to="/dashboard">ALUNOS</Link>
           </li>
-          <li>PLANOS</li>
+          <li>
+            <Link to="/Planos">PLANOS</Link>
+          </li>
           <li>MATRICULAS</li>
           <li>PEDIDOS DE AUXÍLIO</li>
         </ul>
