@@ -10,6 +10,7 @@ import EditarAluno from '../pages/Alunos/Edicao';
 import CadastrarAluno from '../pages/Alunos/Cadastro';
 
 import Planos from '../pages/Planos/Listagem';
+import CadastrarPlano from '../pages/Planos/Cadastro';
 
 export default function Routes() {
   return (
@@ -20,6 +21,7 @@ export default function Routes() {
       <Route path="/cadastroAluno" component={CadastrarAluno} isPrivate />
 
       <Route path="/Planos" component={Planos} isPrivate />
+      <Route path="/cadastrodeplano" component={CadastrarPlano} isPrivate />
     </Switch>
   );
 }

@@ -12,7 +12,7 @@ export default function Listagem() {
           <p>Gerenciar planos</p>
         </div>
         <div>
-          <Link to="/cadastro de planos">
+          <Link to="/cadastrodeplano">
             <MdAdd size={12} color="#FFF" />
             <label>Cadastrar</label>
           </Link>
