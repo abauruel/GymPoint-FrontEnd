@@ -1,10 +1,20 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { MdAdd } from 'react-icons/md';
+
+import api from '../../../services/api';
 
 import { Container, ContainerHeader, ContainerList } from './styles';
 
 export default function Listagem() {
+  const [plans, setPlan] = useState([]);
+  useEffect(() => {
+    async function loadPlans() {
+      const response = await api.get('plans');
+      setPlan(response.data);
+    }
+    loadPlans();
+  }, []);
   return (
     <Container>
       <ContainerHeader>
@@ -28,18 +38,24 @@ export default function Listagem() {
             </tr>
           </thead>
           <tbody>
-            <tr>
-              <td>name</td>
-              <td>email</td>
-              <td>age</td>
-              <td>
-                <button type="button">editar</button>
-              </td>
+            {plans.map(plan => (
+              <tr key={plan.id}>
+                <td>{plan.title}</td>
+                <td>
+                  {plan.duration > 1
+                    ? `${plan.duration} meses`
+                    : `${plan.duration} mês`}
+                </td>
+                <td>{`R$ ${plan.price.toLocaleString('pt-BR')}`}</td>
+                <td>
+                  <button type="button">editar</button>
+                </td>
 
-              <td>
-                <button type="button">apagar</button>
-              </td>
-            </tr>
+                <td>
+                  <button type="button">apagar</button>
+                </td>
+              </tr>
+            ))}
           </tbody>
         </table>
       </ContainerList>
